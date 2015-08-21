@@ -55,5 +55,34 @@ nltk.re.findall(r'([^aeiou][aeiou][^aeiou])*','california angel')
 nltk.re.findall(r'\w+|[^\w\s]+','california\nangel\t1004')
 # This gives us ['california', 'angel','1004']
 
+# Ex7
+# A regex to detect single determiners
+nltk.re.findall(r'\b[aA]\b|\b[aA]n\b|\b[tT]he\b','A nice day at the pub. Anyone with a brain. The right choice.')
+# A regex to match an arithmetic expression
+nltk.re.findall(r'\d+\*?\+?\d+','When we do 33*2+8 we do math basically')
+nltk.re.findall(r'\d*(?:\*|\+)+\d*','When we do 6.33*2+8 we do math basically')
 
+
+# Ex8
+# Write a utility function that takes a URL as its argument and returns
+# the contents with all HTML markup removed.
+# For this we will use the BeautifulSoup package
+# Download bs with easy_install BeautifulSoup4 or download the tarball and
+# make sure bs4 is extracted and put under site-packages or sth
+
+from bs4 import BeautifulSoup
+
+def cleantext():
+    url = 'http://www.bbc.co.uk/news/world-europe-34007859'
+    html = urlopen(url).read()
+    soup = BeautifulSoup(html, "html.parser")
+
+    #We create our BeautifulSoup object and then we can run methods on it
+    # We have to specify a parser, html.parser is python's built-in parser
+
+    text = soup.get_text()
+
+    # If you do type(text) it returns unicode, bs does that for you automatically
+    # Now text is returned like that:u' \n\n\n\n\nGreece crisis: PM Alexis Tsipras', u means unicode
+    # So we have to clean it
 
