@@ -1,21 +1,26 @@
 __author__ = 'mspyropoulou'
-Python Version 2.7.10 on PyCharm
+# Python Version 2.7.10 on PyCharm
 
-#Ex 1
+import nltk
+from bs4 import BeautifulSoup
+from urllib import urlopen
+
+# Ex 1
+s = 'colorless'
 s = s[:4]+'u'+s[4:]
 
-#Ex2
+# Ex2
 w1 = 'dishes'[:-2]
 w2 = 'running'[:-4]
 w3 = 'nationality'[:-5]
 w4 = 'preheat'[:-4]
 
-#Ex3
-#Yes, it is possible to produce an IndexError
+# Ex3
+# Yes, it is possible to produce an IndexError
 # Just try w1 = 'maria' and then w1[-7]
 
-#Ex4
-#Step for slice
+# Ex4
+# Step for slice
 w5 = 'exponentiation'[2:11:2]
 w6 = 'exponentiation'[12:2:-2]
 w7 = 'exponentiation'[12::-2]
@@ -23,12 +28,12 @@ w8 = 'exponentiation'[:5:-2]
 w9 = 'exponentiation'[::2]
 w10 = 'exponentiation'[4::]
 
-#Ex5
+# Ex5
 # 'monty'[::-1] gives you 'ytnom'
 # because the start index and end index are default
 # while step index is 1
 
-#Ex6
+# Ex6
 # If you want to test you write it like this
 nltk.re_show(r'[[a-zA-Z]+]+','october2009')
 # [a-zA-Z]+ = one or more of alphabet
@@ -70,19 +75,38 @@ nltk.re.findall(r'\d*(?:\*|\+)+\d*','When we do 6.33*2+8 we do math basically')
 # Download bs with easy_install BeautifulSoup4 or download the tarball and
 # make sure bs4 is extracted and put under site-packages or sth
 
-from bs4 import BeautifulSoup
 
 def cleantext():
     url = 'http://www.bbc.co.uk/news/world-europe-34007859'
     html = urlopen(url).read()
     soup = BeautifulSoup(html, "html.parser")
-
-    #We create our BeautifulSoup object and then we can run methods on it
+    soup.get_text()
+    # We create our BeautifulSoup object and then we can run methods on it
     # We have to specify a parser, html.parser is python's built-in parser
 
-    text = soup.get_text()
 
-    # If you do type(text) it returns unicode, bs does that for you automatically
-    # Now text is returned like that:u' \n\n\n\n\nGreece crisis: PM Alexis Tsipras', u means unicode
-    # So we have to clean it
+# Ex9
+def load(f = str):
+    import re
+    files = open(f)
+    raw = files.read()
+    pattern = r''       # multiline regex
+    \$?\d+(\.\d+)?%?    # currency
+    |\d+/\d+/\d+        # dates
+    ''
+    x = nltk.regexp_tokenize(raw, pattern, re.VERBOSE)
+    return x
+
+
+
+
+
+
+
+
+
+
+
+
+
 
