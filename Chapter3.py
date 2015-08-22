@@ -90,12 +90,9 @@ def load(f = str):
     import re
     files = open(f)
     raw = files.read()
-    pattern = r''       # multiline regex
-    \$?\d+(\.\d+)?%?    # currency
-    |\d+/\d+/\d+        # dates
-    ''
-    x = nltk.regexp_tokenize(raw, pattern, re.VERBOSE)
-    return x
+    pattern = re.compile(r'''\$?\d+(\.\d+)?%?    # currency
+                             \d+/\d+/\d+        #dates''', re.VERBOSE)
+    nltk.regexp_tokenize(raw, pattern, re.VERBOSE)
 
 
 
