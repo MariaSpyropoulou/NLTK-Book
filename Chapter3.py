@@ -95,6 +95,42 @@ def load(f = str):
     nltk.regexp_tokenize(raw, pattern)
 
 
+# Ex10
+sent = ['The','dog','gave','John','the','newspaper']
+[(w, len(w)) for w in sent]
+
+# Ex11
+sent2 = 'He stayed at the hotel until the end of August'
+sent2.split('h')
+
+# Ex12
+for w in sent2:
+    print w
+
+# Ex13
+# .split() just returns the tokens of the string as separate strings
+# split(' ') does the exact same thing. So sent2.split() and sent2.split(' ')
+# both return ['He', 'stayed', 'at', 'the', 'hotel', 'until', 'the', 'end', 'of', 'August']
+# If the sentence contains tab chars or consecutive whitespace chars
+# .split(' ') returns those chars as well
+# sent3 = 'Lana   and her boyfriend  went on a trip'
+# ['Lana', '', '', 'and', 'her', 'boyfriend', '', 'went', 'on', 'a', 'trip']
+
+# Ex14
+# words.sort() and sorted(words) both return the strings in alphabetical order
+
+# Ex17
+a = '%6s' % 'exponentiation'
+b = '%-6s' % 'exponentiation'
+# Both a and b return 'exponentiation'
+c = '%6s' % 'expo'
+d = '%-6s' % 'expo'
+# These return '  expo' and 'expo  ' respectively
+
+
+
+
+
 
 
 
