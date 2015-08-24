@@ -35,16 +35,16 @@ w10 = 'exponentiation'[4::]
 
 # Ex6
 # If you want to test you write it like this
-nltk.re_show(r'[[a-zA-Z]+]+','october2009')
+nltk.re_show(r'[[a-zA-Z]+]+', 'october2009')
 # [a-zA-Z]+ = one or more of alphabet
-nltk.re.findall(r'[a-zA-Z]+','October2009')
+nltk.re.findall(r'[a-zA-Z]+', 'October2009')
 # returns ['October']
 # [A-Z][a-z]* = Kleene Closure, same as previous
 # p[aeiou]{,2}t = p and then up to 2 vowels and t
-nltk.re.findall(r'p[aeiou]{,2}t','paella, pat, pout')
+nltk.re.findall(r'p[aeiou]{,2}t', 'paella, pat, pout')
 # returns ['pat', 'pout']
 # \d+(\.\d+)? = extract one or more decimals of a floating number
-nltk.re.findall(r'\d+(\.\d+)?','0.99, 2345, 234.5')
+nltk.re.findall(r'\d+(\.\d+)?', '0.99, 2345, 234.5')
 # This gives us ['.99', '', '.5']
 # Remember that parentheses, except for defining operator scope
 # have a second function, to select substrings to be extracted
@@ -53,19 +53,19 @@ nltk.re.findall(r'\d+(\.\d+)?','0.99, 2345, 234.5')
 # then a vowel, then any character other than a vowel
 # Remember the ^ operator has another function as the first character
 # inside square brackets
-nltk.re.findall(r'([^aeiou][aeiou][^aeiou])*','california angel')
+nltk.re.findall(r'([^aeiou][aeiou][^aeiou])*', 'california angel')
 # This gives us ['cal', '', 'for', '', '', '', 'gel', '']
 # If we want empty strings gone we use + instead of *, which means one or more
 # \w+|[^\w\s]+ = one or more alphanumeric character or no alphanumeric with any whitespace character
-nltk.re.findall(r'\w+|[^\w\s]+','california\nangel\t1004')
+nltk.re.findall(r'\w+|[^\w\s]+', 'california\nangel\t1004')
 # This gives us ['california', 'angel','1004']
 
 # Ex7
 # A regex to detect single determiners
-nltk.re.findall(r'\b[aA]\b|\b[aA]n\b|\b[tT]he\b','A nice day at the pub. Anyone with a brain. The right choice.')
+nltk.re.findall(r'\b[aA]\b|\b[aA]n\b|\b[tT]he\b', 'A nice day at the pub. Anyone with a brain. The right choice.')
 # A regex to match an arithmetic expression
-nltk.re.findall(r'\d+\*?\+?\d+','When we do 33*2+8 we do math basically')
-nltk.re.findall(r'\d*(?:\*|\+)+\d*','When we do 6.33*2+8 we do math basically')
+nltk.re.findall(r'\d+\*?\+?\d+', 'When we do 33*2+8 we do math basically')
+nltk.re.findall(r'\d*(?:\*|\+)+\d*', 'When we do 6.33*2+8 we do math basically')
 
 
 # Ex8
@@ -86,7 +86,7 @@ def cleantext():
 
 
 # Ex9
-def load(f = str):
+def load(f=str):
     import re
     files = open(f)
     raw = files.read()
@@ -96,7 +96,7 @@ def load(f = str):
 
 
 # Ex10
-sent = ['The','dog','gave','John','the','newspaper']
+sent = ['The', 'dog', 'gave', 'John', 'the', 'newspaper']
 [(w, len(w)) for w in sent]
 
 # Ex11
@@ -126,6 +126,24 @@ b = '%-6s' % 'exponentiation'
 c = '%6s' % 'expo'
 d = '%-6s' % 'expo'
 # These return '  expo' and 'expo  ' respectively
+
+# Ex18
+# You can find a corpus with nltk.corpus.sth
+
+import re
+emma = sorted(set(nltk.corpus.treebank.words()))
+result = [w for w in emma if re.search(r'^wh(at|ere|o|y|en|ich)$', w)]
+
+# Ex19
+exercise = open('testfile.txt').readlines()
+exercises = [line.split() for line in exercise]
+result1 = [[y, int(x)] for y, x in exercises]
+
+
+
+
+
+
 
 
 
