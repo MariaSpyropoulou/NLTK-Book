@@ -4,6 +4,8 @@ __author__ = 'mspyropoulou'
 import nltk
 from bs4 import BeautifulSoup
 from urllib import urlopen
+from readability.readability import Document
+
 
 # Ex 1
 s = 'colorless'
@@ -74,15 +76,17 @@ nltk.re.findall(r'\d*(?:\*|\+)+\d*', 'When we do 6.33*2+8 we do math basically')
 # For this we will use the BeautifulSoup package
 # Download bs with easy_install BeautifulSoup4 or download the tarball and
 # make sure bs4 is extracted and put under site-packages or sth
+# I also installed the modules readability, chardet and lxml
 
 
 def cleantext():
     url = 'http://www.bbc.co.uk/news/world-europe-34007859'
     html = urlopen(url).read()
-    soup = BeautifulSoup(html, "html.parser")
-    soup.get_text()
-    # We create our BeautifulSoup object and then we can run methods on it
-    # We have to specify a parser, html.parser is python's built-in parser
+    readable_article = Document(html).summary()
+    soup = BeautifulSoup(readable_article, "lxml")
+    clean = soup.text
+    return clean[:500]
+
 
 
 # Ex9
@@ -139,6 +143,14 @@ exercise = open('testfile.txt').readlines()
 exercises = [line.split() for line in exercise]
 result1 = [[y, int(x)] for y, x in exercises]
 
+# Ex20
+url2 = 'http://www.bbc.co.uk/weather/2643743'
+html2 = urlopen(url2).read()
+readable_article2 = Document(html2).summary()
+soup2 = BeautifulSoup(readable_article2, "lxml")
+clean2 = soup2.text
+
+# https://docs.python.org/2/howto/unicode.html
 
 
 
