@@ -1,3 +1,4 @@
+# coding=utf-8
 __author__ = 'mspyropoulou'
 # Python Version 2.7.10 on PyCharm
 
@@ -149,8 +150,33 @@ html2 = urlopen(url2).read()
 readable_article2 = Document(html2).summary()
 soup2 = BeautifulSoup(readable_article2, "lxml")
 clean2 = soup2.text
+cleanstring = clean2.encode('utf8')
+assert isinstance(cleanstring, str)
+print cleanstring
+re.findall(r'\w+°C\b', cleanstring)
 
-# https://docs.python.org/2/howto/unicode.html
+# Ex21
+def unknown(url):
+    html3 = urlopen(url).read()
+    readable3 = Document(html3).summary()
+    soupobj = BeautifulSoup(readable3, "lxml")
+    clean3 = soupobj.text
+    cleanstr = clean3.encode('utf8')
+    words = nltk.corpus.words.words()
+    result = re.findall(r'\b[a-z]+\b', cleanstr)
+    unknownwords = [w for w in result if w not in words]
+    return unknownwords
+
+
+
+
+
+
+
+
+
+
+
 
 
 
