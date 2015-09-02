@@ -168,6 +168,38 @@ def unknown(url):
     return unknownwords
 
 
+# Ex23
+re.findall(r'\b(.*)(n\'t)\b', "don't mess with him")
+
+# Ex24
+# First we create a dictionary to define substitutions and then we create a function
+# using the string method replace
+
+chars = {'a': 'A', 'e': '3', 's': '5', 'l': '!'}
+def replace_chars(text, dictionary):
+    text.lower()
+    for i, j in dictionary.iteritems():
+        text = text.replace(i, j)
+    return text
+
+# string = 'sweet'
+# replace_chars(string, chars) yields '5w33t'
+# string1 = 'hacker'
+# replace_chars(string1, chars) yields 'hAck3r'
+
+
+# Ex25
+# Pig latin talk
+def pig_latin(word):
+    if re.findall(r'^[^aeiou]+', word) == []:
+        results = word + 'ay'
+    else:
+        consonant = re.findall(r'^[^aeiou]+', word)[0]
+        con = word.rindex(consonant[-1])
+        preresults = word[con + 1:]
+        results = preresults + consonant + 'ay'
+    assert isinstance(word, str)
+    return results
 
 
 
@@ -176,26 +208,4 @@ def unknown(url):
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+# re.findall(r'^[^aeiou]+[a-z]+', string)
