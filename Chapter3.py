@@ -201,11 +201,13 @@ def pig_latin(word):
     assert isinstance(word, str)
     return results
 
+# Ex26
+
+hungarian = nltk.corpus.udhr.raw('Hungarian_Magyar-UTF8')
+hung = hungarian.encode('utf8')
+chars = re.findall(r'[aeiouy]{2,}', hung)
+characters = list(set(chars))
+data = [re.findall(r'[aeiouy]', n) for n in characters]
 
 
 
-
-
-
-
-# re.findall(r'^[^aeiou]+[a-z]+', string)
