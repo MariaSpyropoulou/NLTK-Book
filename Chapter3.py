@@ -209,5 +209,6 @@ chars = re.findall(r'[aeiouy]{2,}', hung)
 characters = list(set(chars))
 data = [re.findall(r'[aeiouy]', n) for n in characters]
 
+# We get a list of the pairs
 
 
