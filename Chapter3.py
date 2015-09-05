@@ -10,13 +10,13 @@ from readability.readability import Document
 
 # Ex 1
 s = 'colorless'
-s = s[:4]+'u'+s[4:]
+s = s[:4] + 'u' + s[4:]
 
 # Ex2
-w1 = 'dishes'[:-2]
-w2 = 'running'[:-4]
-w3 = 'nationality'[:-5]
-w4 = 'preheat'[:-4]
+# 'dishes'[:-2]
+# 'running'[:-4]
+# 'nationality'[:-5]
+# 'preheat'[:-4]
 
 # Ex3
 # Yes, it is possible to produce an IndexError
@@ -24,12 +24,12 @@ w4 = 'preheat'[:-4]
 
 # Ex4
 # Step for slice
-w5 = 'exponentiation'[2:11:2]
-w6 = 'exponentiation'[12:2:-2]
-w7 = 'exponentiation'[12::-2]
-w8 = 'exponentiation'[:5:-2]
-w9 = 'exponentiation'[::2]
-w10 = 'exponentiation'[4::]
+# 'exponentiation'[2:11:2]
+# 'exponentiation'[12:2:-2]
+# 'exponentiation'[12::-2]
+# 'exponentiation'[:5:-2]
+# 'exponentiation'[::2]
+# 'exponentiation'[4::]
 
 # Ex5
 # 'monty'[::-1] gives you 'ytnom'
@@ -89,7 +89,6 @@ def cleantext():
     return clean[:500]
 
 
-
 # Ex9
 def load(f=str):
     import re
@@ -125,17 +124,18 @@ for w in sent2:
 # words.sort() and sorted(words) both return the strings in alphabetical order
 
 # Ex17
-a = '%6s' % 'exponentiation'
-b = '%-6s' % 'exponentiation'
+# '%6s' % 'exponentiation'
+# '%-6s' % 'exponentiation'
 # Both a and b return 'exponentiation'
-c = '%6s' % 'expo'
-d = '%-6s' % 'expo'
+# '%6s' % 'expo'
+# '%-6s' % 'expo'
 # These return '  expo' and 'expo  ' respectively
 
 # Ex18
 # You can find a corpus with nltk.corpus.sth
 
 import re
+
 emma = sorted(set(nltk.corpus.treebank.words()))
 result = [w for w in emma if re.search(r'^wh(at|ere|o|y|en|ich)$', w)]
 
@@ -144,27 +144,39 @@ exercise = open('testfile.txt').readlines()
 exercises = [line.split() for line in exercise]
 result1 = [[y, int(x)] for y, x in exercises]
 
+
 # Ex20
-url2 = 'http://www.bbc.co.uk/weather/2643743'
-html2 = urlopen(url2).read()
-readable_article2 = Document(html2).summary()
-soup2 = BeautifulSoup(readable_article2, "lxml")
-clean2 = soup2.text
-cleanstring = clean2.encode('utf8')
-assert isinstance(cleanstring, str)
-print cleanstring
-re.findall(r'\w+°C\b', cleanstring)
+def clean_html():
+    """
+
+    :return: degrees celsius from weather site
+    """
+    url2 = 'http://www.bbc.co.uk/weather/2643743'
+    html2 = urlopen(url2).read()
+    readable_article2 = Document(html2).summary()
+    soup2 = BeautifulSoup(readable_article2, "lxml")
+    clean2 = soup2.text
+    cleanstring = clean2.encode('utf8')
+    assert isinstance(cleanstring, str)
+    print cleanstring
+    re.findall(r'\w+°C\b', cleanstring)
+
 
 # Ex21
 def unknown(url):
+    """
+
+    :param url: a url
+    :return: a list of words not included in nltk's words wordlist
+    """
     html3 = urlopen(url).read()
     readable3 = Document(html3).summary()
     soupobj = BeautifulSoup(readable3, "lxml")
     clean3 = soupobj.text
     cleanstr = clean3.encode('utf8')
     words = nltk.corpus.words.words()
-    result = re.findall(r'\b[a-z]+\b', cleanstr)
-    unknownwords = [w for w in result if w not in words]
+    result2 = re.findall(r'\b[a-z]+\b', cleanstr)
+    unknownwords = [f for f in result2 if w not in words]
     return unknownwords
 
 
@@ -174,13 +186,19 @@ re.findall(r'\b(.*)(n\'t)\b', "don't mess with him")
 # Ex24
 # First we create a dictionary to define substitutions and then we create a function
 # using the string method replace
+# We can use chars = {'a': 'A', 'e': '3', 's': '5', 'l': '!'}
 
-chars = {'a': 'A', 'e': '3', 's': '5', 'l': '!'}
-def replace_chars(text, dictionary):
+
+def replace_chars(text, dic):
+    """
+
+    :type dic: dict
+    """
     text.lower()
-    for i, j in dictionary.iteritems():
+    for i, j in dic.iteritems():
         text = text.replace(i, j)
     return text
+
 
 # string = 'sweet'
 # replace_chars(string, chars) yields '5w33t'
@@ -191,6 +209,11 @@ def replace_chars(text, dictionary):
 # Ex25
 # Pig latin talk
 def pig_latin(word):
+    """
+
+    :param word: a word as a string
+    :return: the word in pig latin
+    """
     if re.findall(r'^[^aeiou]+', word) == []:
         results = word + 'ay'
     else:
@@ -201,14 +224,16 @@ def pig_latin(word):
     assert isinstance(word, str)
     return results
 
+
 # Ex26
+def vowel_clusters():
+    """
 
-hungarian = nltk.corpus.udhr.raw('Hungarian_Magyar-UTF8')
-hung = hungarian.encode('utf8')
-chars = re.findall(r'[aeiouy]{2,}', hung)
-characters = list(set(chars))
-data = [re.findall(r'[aeiouy]', n) for n in characters]
-
-# We get a list of the pairs
-
-
+    :return: a list of the vowel clusters of hungarian
+    """
+    hungarian = nltk.corpus.udhr.raw('Hungarian_Magyar-UTF8')
+    hung = hungarian.encode('utf8')
+    chars1 = re.findall(r'[aeiouy]{2,}', hung)
+    characters = list(set(chars1))
+    data = [re.findall(r'[aeiouy]', n) for n in characters]
+    return data
