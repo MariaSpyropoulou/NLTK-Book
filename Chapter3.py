@@ -6,6 +6,7 @@ import nltk
 from bs4 import BeautifulSoup
 from urllib import urlopen
 from readability.readability import Document
+import random
 
 
 # Ex 1
@@ -237,3 +238,56 @@ def vowel_clusters():
     characters = list(set(chars1))
     data = [re.findall(r'[aeiouy]', n) for n in characters]
     return data
+
+
+# Ex 27
+# Produce a string that looks like a maniac's laughter
+
+def maniaclaughter():
+    given = "aehh "
+    xy = []
+    for i in range(50):
+        v = random.choice(given)
+        v.split()
+        xy.append(v)
+    return ''.join(xy)
+
+
+# Ex 29
+# The Automated Readability Index (ARI) of a text is defined as: 4.71 μw + 0.5 μs - 21.43
+# μw = average number of letters per word, μs = average number of words per sentence
+# Compute the ARI score for various sections of the Brown Corpus
+
+def readabilityindex():
+    """
+
+    :return: the average number of readability indexes for lore category texts
+    """
+    indexes = []
+    for fileid in nltk.corpus.brown.fileids('lore'):
+        num_letters = len(nltk.corpus.brown.raw(fileid))
+        num_words = len(nltk.corpus.brown.words(fileid))
+        num_sents = len(nltk.corpus.brown.sents(fileid))
+        mw = int(num_letters / num_words)
+        ms = int(num_words / num_sents)
+        indexes.append(4.71 * mw + 0.5 * ms - 21.43)
+    return sum(indexes) / len(indexes)
+
+
+# Ex38
+# re.sub('-\/n', '', 'encyclo-/npedia')
+
+# Ex 41
+# [[vowel for vowel in 'aeiou']for word in words]
+
+
+
+
+
+
+
+
+
+
+
+
