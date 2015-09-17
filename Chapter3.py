@@ -3,10 +3,11 @@ __author__ = 'mspyropoulou'
 # Python Version 2.7.10 on PyCharm
 
 import nltk
+import random
+import re
 from bs4 import BeautifulSoup
 from urllib import urlopen
 from readability.readability import Document
-import random
 
 
 # Ex 1
@@ -105,12 +106,12 @@ sent = ['The', 'dog', 'gave', 'John', 'the', 'newspaper']
 [(w, len(w)) for w in sent]
 
 # Ex11
-sent2 = 'He stayed at the hotel until the end of August'
-sent2.split('h')
+# sent2 = 'He stayed at the hotel until the end of August'
+# sent2.split('h')
 
 # Ex12
-for w in sent2:
-    print w
+# for w in sent2:
+# print w
 
 # Ex13
 # .split() just returns the tokens of the string as separate strings
@@ -135,18 +136,18 @@ for w in sent2:
 # Ex18
 # You can find a corpus with nltk.corpus.sth
 
-import re
 
 emma = sorted(set(nltk.corpus.treebank.words()))
 result = [w for w in emma if re.search(r'^wh(at|ere|o|y|en|ich)$', w)]
 
 # Ex19
-exercise = open('testfile.txt').readlines()
-exercises = [line.split() for line in exercise]
-result1 = [[y, int(x)] for y, x in exercises]
+# exercise = open('testfile.txt').readlines()
+# exercises = [line.split() for line in exercise]
+# result1 = [[y, int(x)] for y, x in exercises]
 
 
 # Ex20
+
 def clean_html():
     """
 
@@ -164,6 +165,7 @@ def clean_html():
 
 
 # Ex21
+
 def unknown(url):
     """
 
@@ -182,6 +184,7 @@ def unknown(url):
 
 
 # Ex23
+
 re.findall(r'\b(.*)(n\'t)\b', "don't mess with him")
 
 # Ex24
@@ -209,11 +212,19 @@ def replace_chars(text, dic):
 
 # Ex25
 # Pig latin talk
+# In the docstring I have included a doctest
+# To run the test go to the terminal and write
+# $ python -m doctest -v Chapter3.py
+# -m is main program flag and -v is a verbose flag
+
 def pig_latin(word):
     """
 
     :param word: a word as a string
     :return: the word in pig latin
+
+    >>> pig_latin('sweet')
+    'eetsway'
     """
     if re.findall(r'^[^aeiou]+', word) == []:
         results = word + 'ay'
@@ -279,15 +290,3 @@ def readabilityindex():
 
 # Ex 41
 # [[vowel for vowel in 'aeiou']for word in words]
-
-
-
-
-
-
-
-
-
-
-
-
