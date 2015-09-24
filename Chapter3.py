@@ -1,14 +1,13 @@
 # coding=utf-8
-__author__ = 'mspyropoulou'
-# Python Version 2.7.10 on PyCharm
-
-import nltk
-import random
 import re
+import random
+import nltk
 from bs4 import BeautifulSoup
 from urllib import urlopen
 from readability.readability import Document
 
+# Python Version 2.7.10 on PyCharm
+__author__ = 'mspyropoulou'
 
 # Ex 1
 s = 'colorless'
@@ -140,6 +139,7 @@ sent = ['The', 'dog', 'gave', 'John', 'the', 'newspaper']
 emma = sorted(set(nltk.corpus.treebank.words()))
 result = [w for w in emma if re.search(r'^wh(at|ere|o|y|en|ich)$', w)]
 
+
 # Ex19
 # exercise = open('testfile.txt').readlines()
 # exercises = [line.split() for line in exercise]
@@ -186,6 +186,7 @@ def unknown(url):
 # Ex23
 
 re.findall(r'\b(.*)(n\'t)\b', "don't mess with him")
+
 
 # Ex24
 # First we create a dictionary to define substitutions and then we create a function
